@@ -12,6 +12,8 @@ public class Ejercicio05 {
 		int favNum[] = new int[1];
 		
 		int num1, num2;
+		int pos1 = 0;
+		int	pos2 = 0;
 		int count = 0;
 		
 		System.out.println("Introduzca sus números favoritos (negativo para terminar): ");
@@ -38,12 +40,24 @@ public class Ejercicio05 {
 		
 		while (favNum.length > 1) {
 			
-			num1 = favNum[(int)(Math.random()*favNum.length)];
-			num2 = favNum[(int)(Math.random()*favNum.length)];
+			while (pos1 == pos2) {
+				
+				pos1 = (int)(Math.random()*favNum.length);
+				pos2 = (int)(Math.random()*favNum.length);
+				
+			}
 			
-			favNum[num1] = (num1 + num2) / 2;
+			num1 = favNum[pos1];
+			num2 = favNum[pos2];
 			
-			System.arraycopy();
+			favNum[pos1] = (num1 + num2) / 2;
+			
+			System.arraycopy(favNum, pos2 + 1, favNum, pos2, favNum.length - (1 + pos2));
+			
+			favNum = Arrays.copyOf(favNum, favNum.length - 1);
+			
+			pos1 = 0;
+			pos2 = 0;
 			
 		}
 		
